@@ -15,7 +15,29 @@ solution for managing, querying, and storing large quantities of data.
 
 The indices and queries are created with a Java API, so learning another query language is unnecessary.
 
-## Features
+## Overview
+
+- Indexed Collection
+- Designed for big data, up to 2^50 elements (1.125.899.906.842.624)
+- Internal segmentation with lazy loading
+- Query with Java API
+- Fully integrated with [EclipseStore](https://eclipsestore.io)
+- Indices
+    - Bitmap
+        - Predefined
+        - Custom
+        - Unique
+    - Lucene (WiP)
+- Constraints
+  - Unique
+  - Custom
+- Queries
+  - Fluent Java-API
+  - Queries are executed off-heap
+  - Results are Streamable / Iteratable / Pageable
+  - Entities in result are lazy-loaded on demand
+
+      
 
 
 
