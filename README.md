@@ -71,7 +71,7 @@ The sole purpose of these indexers is to extract the entity's value, which will 
 ```java
 public class PersonIndices
 {
-	public final static Indexer.AbstractUUID<Person> idIndex = new Indexer.AbstractUUID<>()
+	public final static Indexer.AbstractUUID<Person> id = new Indexer.AbstractUUID<>()
 	{
 		@Override
 		protected UUID getUUID(final Person entity)
@@ -80,7 +80,7 @@ public class PersonIndices
 		}
 	};
 
-	public final static Indexer.AbstractString<Person> firstNameIndex = new Indexer.AbstractString<>()
+	public final static Indexer.AbstractString<Person> firstName = new Indexer.AbstractString<>()
 	{
 		@Override
 		public String indexEntity(final Person entity)
@@ -89,7 +89,7 @@ public class PersonIndices
 		}
 	};
 	
-	public final static Indexer.AbstractString<Person> lastNameIndex = new Indexer.AbstractString<>()
+	public final static Indexer.AbstractString<Person> lastName = new Indexer.AbstractString<>()
 	{
 		@Override
 		public String indexEntity(final Person entity)
@@ -98,7 +98,7 @@ public class PersonIndices
 		}
 	};
 	
-	public final static Indexer.AbstractLocalDate<Person> dateOfBirthIndex = new Indexer.AbstractLocalDate<>()
+	public final static Indexer.AbstractLocalDate<Person> dateOfBirth = new Indexer.AbstractLocalDate<>()
 	{
 		@Override
 		protected LocalDate getDate(final Person entity)
@@ -107,7 +107,7 @@ public class PersonIndices
 		}
 	};
 
-	public final static Indexer.AbstractString<Person> cityIndex = new Indexer.AbstractString<>()
+	public final static Indexer.AbstractString<Person> city = new Indexer.AbstractString<>()
 	{
 		@Override
 		public String indexEntity(final Person entity)
@@ -116,7 +116,7 @@ public class PersonIndices
 		}
 	};
 
-	public final static Indexer.AbstractString<Person> countryIndex = new Indexer.AbstractString<>()
+	public final static Indexer.AbstractString<Person> country = new Indexer.AbstractString<>()
 	{
 		@Override
 		public String indexEntity(final Person entity)
@@ -127,3 +127,29 @@ public class PersonIndices
 }
 ```
 
+Now, we can create the GigaMap itself.
+
+```java
+final GigaMap<Person> gigaMap = GigaMap.<Person>Builder()
+	.withBitmapIdentityIndex(PersonIndices.id)
+	.withBitmapIndex(PersonIndices.firstName)
+	.withBitmapIndex(PersonIndices.lastName)
+	.withBitmapIndex(PersonIndices.dateOfBirth)
+	.withBitmapIndex(PersonIndices.city)
+	.withBitmapIndex(PersonIndices.country)
+	.build();
+```
+
+After adding data to the GigaMap, let's try some queries.
+
+```java
+// Get all Johns
+List<Person> result = gigaMap.query(PersonIndices.firstName.is("John")).toList();
+```
+
+```java
+// Geta all born in the year 2000
+List<Person> result = gigaMap.query(PersonIndices.dateOfBirth.isYear(2000)).toList();
+```
+
+Have a look at the methods of GigaQuery. There is not only `toList()` but many more data retrieval methods. You can iterate, stream or page through the results.
