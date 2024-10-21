@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>one.microstream</groupId>
+	<artifactId>gigamap-examples</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+		<gigamap.version>1.0.0-SNAPSHOT</gigamap.version>
+		<eclipse-store.version>2.0.0</eclipse-store.version>
+	</properties>
+
+<!--	<repositories>-->
+<!--		<repository>-->
+<!-- 			Check MicroStream cloud for repository info -->
+<!--		</repository>-->
+<!--	</repositories>-->
+
+	<dependencies>
+		<dependency>
+			<groupId>one.microstream</groupId>
+			<artifactId>gigamap</artifactId>
+			<version>${gigamap.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.store</groupId>
+			<artifactId>storage-embedded</artifactId>
+			<version>${eclipse-store.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+	</dependencies>
+	
+</project>
