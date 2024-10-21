@@ -15,27 +15,7 @@ solution for managing, querying, and storing large quantities of data.
 
 The indices and queries are created with a Java API, so learning another query language is unnecessary.
 
-## Overview
 
-- Indexed Collection
-- Designed for big data, up to 2^50 elements (1.125.899.906.842.624)
-- Internal segmentation with lazy loading
-- Query with Java API
-- Fully integrated with [EclipseStore](https://eclipsestore.io)
-- Indices
-    - Bitmap
-        - Predefined
-        - Custom
-        - Unique
-    - Lucene (WiP)
-- Constraints
-  - Unique
-  - Custom
-- Queries
-  - Fluent Java-API
-  - Queries are executed off-heap
-  - Results are Streamable / Iteratable / Pageable
-  - Entities in result are lazy-loaded on demand
 
       
 
@@ -43,10 +23,9 @@ The indices and queries are created with a Java API, so learning another query l
 
 ## Setup
 
-To partake in the Beta, just create an account at ...
-There you will find the Maven coordinates for the library.
+To partake in the Beta, just create a free account at https://microstream.cloud, there you will find the Maven repository for the library.
 
-Add this dependency to your project, and you are good to go:
+Then add this dependency to your project, and you are good to go:
 
 ```xml
 <groupId>one.microstream</groupId>
@@ -55,4 +34,96 @@ Add this dependency to your project, and you are good to go:
 ```
 
 
-## Examples
+## Get Started
+
+The complete code can be found in the examples folder.
+
+First, we need an entity that we will store in the GigaMap.
+
+```java
+public class Person
+{
+    private final UUID      id         = UUID.randomUUID();
+    private       String    firstName  ;
+    private       String    lastName   ;
+    private       LocalDate dateOfBirth;
+    private       Address   address    ;
+	
+    // ...
+}
+
+public class Address
+{
+    private String street;
+    private String city;
+    private String country;
+
+    // ...
+}
+```
+
+Next, we create the indexers, which are used for the GigaMap. Since we need them later on to create queries, we define them as constants in a dedicated type.
+
+For most use cases, the predefined abstract indexers will be sufficient. They cover the most common types which are used in indices.
+
+The sole purpose of these indexers is to extract the entity's value, which will be stored in the index.
+
+```java
+public class PersonIndices
+{
+	public final static Indexer.AbstractUUID<Person> idIndex = new Indexer.AbstractUUID<>()
+	{
+		@Override
+		protected UUID getUUID(final Person entity)
+		{
+			return entity.getId();
+		}
+	};
+
+	public final static Indexer.AbstractString<Person> firstNameIndex = new Indexer.AbstractString<>()
+	{
+		@Override
+		public String indexEntity(final Person entity)
+		{
+			return entity.getFirstName();
+		}
+	};
+	
+	public final static Indexer.AbstractString<Person> lastNameIndex = new Indexer.AbstractString<>()
+	{
+		@Override
+		public String indexEntity(final Person entity)
+		{
+			return entity.getLastName();
+		}
+	};
+	
+	public final static Indexer.AbstractLocalDate<Person> dateOfBirthIndex = new Indexer.AbstractLocalDate<>()
+	{
+		@Override
+		protected LocalDate getDate(final Person entity)
+		{
+			return entity.getDateOfBirth();
+		}
+	};
+
+	public final static Indexer.AbstractString<Person> cityIndex = new Indexer.AbstractString<>()
+	{
+		@Override
+		public String indexEntity(final Person entity)
+		{
+			return entity.getAddress().getCity();
+		}
+	};
+
+	public final static Indexer.AbstractString<Person> countryIndex = new Indexer.AbstractString<>()
+	{
+		@Override
+		public String indexEntity(final Person entity)
+		{
+			return entity.getAddress().getCountry();
+		}
+	};
+}
+```
+
