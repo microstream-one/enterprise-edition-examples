@@ -43,22 +43,22 @@ First, we need an entity that we will store in the GigaMap.
 ```java
 public class Person
 {
-    private final UUID      id         = UUID.randomUUID();
-    private       String    firstName  ;
-    private       String    lastName   ;
-    private       LocalDate dateOfBirth;
-    private       Address   address    ;
+	private final UUID      id         = UUID.randomUUID();
+	private       String    firstName  ;
+	private       String    lastName   ;
+	private       LocalDate dateOfBirth;
+	private       Address   address    ;
 	
-    // ...
+	// ...
 }
 
 public class Address
 {
-    private String street;
-    private String city;
-    private String country;
+	private String street;
+	private String city;
+	private String country;
 
-    // ...
+	// ...
 }
 ```
 
