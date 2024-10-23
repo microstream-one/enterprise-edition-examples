@@ -1,4 +1,4 @@
-# MicroStream GigaMap (beta)
+# MicroStream GigaMap (Beta)
 
 Welcome to the Beta program for our new GigaMap.
 
