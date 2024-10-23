@@ -33,6 +33,10 @@ Then add this dependency to your project, and you are good to go:
 <version>1.0.0-beta1</version>
 ```
 
+## Demos
+
+- There is a version of the [BookStore Demo](https://github.com/eclipse-store/bookstore-demo/tree/gigamap) which uses the GigaMap
+- More demos are on the way
 
 ## Get Started
 
