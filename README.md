@@ -36,7 +36,7 @@ Then add this dependency to your project, and you are good to go:
 
 ## Get Started
 
-The complete code can be found in the examples folder.
+The complete code can be found in the [examples](/examples) folder.
 
 First, we need an entity that we will store in the GigaMap.
 
