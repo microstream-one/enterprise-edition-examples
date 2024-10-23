@@ -2,7 +2,12 @@
 
 Welcome to the Beta program for our new GigaMap.
 
-An indexed collection designed to cope with vast amounts of data.
+If you have suggestions or find any issues, please feel free to open an issue or a discussion.
+
+
+## Description
+
+The GigaMap is an indexed collection designed to cope with vast amounts of data.
 
 It stores the data in nested, lazy-loaded segments backed by indices.
 This allows for efficient querying of data without the need to load all of it into memory.
@@ -14,11 +19,6 @@ without the need to load all the data first. This makes it a highly efficient an
 solution for managing, querying, and storing large quantities of data.
 
 The indices and queries are created with a Java API, so learning another query language is unnecessary.
-
-
-
-      
-
 
 
 ## Setup
