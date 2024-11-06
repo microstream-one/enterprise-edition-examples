@@ -2,7 +2,7 @@
 
 Welcome to the Beta program for our new Enterprise Edition.
 
-If you have suggestions or find any issues, please feel free to open an [issue](https://github.com/microstream-one/gigamap-beta/issues) or a [discussion](https://github.com/microstream-one/gigamap-beta/discussions).
+If you have suggestions or find any issues, please feel free to open an [issue](https://github.com/microstream-one/enterprise-edition-beta/issues) or a [discussion](https://github.com/microstream-one/enterprise-edition-beta/discussions).
 
 
 ## Description
