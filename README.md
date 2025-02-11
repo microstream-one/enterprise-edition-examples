@@ -42,7 +42,7 @@ Then add this dependency to your project, and you are good to go:
 ```xml
 <groupId>one.microstream</groupId>
 <artifactId>gigamap</artifactId>
-<version>1.0.0-beta1</version>
+<version>1.0.0-beta2</version>
 ```
 
 ## Demos
@@ -87,7 +87,7 @@ The sole purpose of these indexers is to extract the entity's value, which will 
 ```java
 public class PersonIndices
 {
-	public final static Indexer.AbstractUUID<Person> id = new Indexer.AbstractUUID<>()
+	public final static IndexerUUID<Person> id = new IndexerUUID.Abstract<>()
 	{
 		@Override
 		protected UUID getUUID(final Person entity)
@@ -96,46 +96,46 @@ public class PersonIndices
 		}
 	};
 
-	public final static Indexer.AbstractString<Person> firstName = new Indexer.AbstractString<>()
+	public final static IndexerString<Person> firstName = new IndexerString.Abstract<>()
 	{
 		@Override
-		public String indexEntity(final Person entity)
+		public String getString(final Person entity)
 		{
 			return entity.getFirstName();
 		}
 	};
 	
-	public final static Indexer.AbstractString<Person> lastName = new Indexer.AbstractString<>()
+	public final static IndexerString<Person> lastName = new IndexerString.Abstract<>()
 	{
 		@Override
-		public String indexEntity(final Person entity)
+		public String getString(final Person entity)
 		{
 			return entity.getLastName();
 		}
 	};
 	
-	public final static Indexer.AbstractLocalDate<Person> dateOfBirth = new Indexer.AbstractLocalDate<>()
+	public final static IndexerLocalDate<Person> dateOfBirth = new IndexerLocalDate.Abstract<>()
 	{
 		@Override
-		protected LocalDate getDate(final Person entity)
+		protected LocalDate getLocalDate(final Person entity)
 		{
 			return entity.getDateOfBirth();
 		}
 	};
 
-	public final static Indexer.AbstractString<Person> city = new Indexer.AbstractString<>()
+	public final static IndexerString<Person> city = new IndexerString.Abstract<>()
 	{
 		@Override
-		public String indexEntity(final Person entity)
+		public String getString(final Person entity)
 		{
 			return entity.getAddress().getCity();
 		}
 	};
 
-	public final static Indexer.AbstractString<Person> country = new Indexer.AbstractString<>()
+	public final static IndexerString<Person> country = new IndexerString.Abstract<>()
 	{
 		@Override
-		public String indexEntity(final Person entity)
+		public String getString(final Person entity)
 		{
 			return entity.getAddress().getCountry();
 		}
