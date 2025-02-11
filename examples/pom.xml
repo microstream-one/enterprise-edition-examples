@@ -14,8 +14,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
-		<gigamap.version>1.0.0-beta1</gigamap.version>
-		<eclipse-store.version>2.0.0</eclipse-store.version>
+		<gigamap.version>1.0.0-beta2</gigamap.version>
+		<eclipse-store.version>2.1.1</eclipse-store.version>
 	</properties>
 
 <!--	<repositories>-->

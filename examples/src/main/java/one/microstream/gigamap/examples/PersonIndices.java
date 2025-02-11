@@ -3,7 +3,9 @@ package one.microstream.gigamap.examples;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import one.microstream.gigamap.Indexer;
+import one.microstream.gigamap.IndexerLocalDate;
+import one.microstream.gigamap.IndexerString;
+import one.microstream.gigamap.IndexerUUID;
 
 /**
  * Static collection of indices for the {@link Person} entity.
@@ -12,7 +14,7 @@ import one.microstream.gigamap.Indexer;
  */
 public class PersonIndices
 {
-	public final static Indexer.AbstractUUID<Person> id = new Indexer.AbstractUUID<>()
+	public final static IndexerUUID<Person> id = new IndexerUUID.Abstract<>()
 	{
 		public String name()
 		{
@@ -26,7 +28,7 @@ public class PersonIndices
 		}
 	};
 
-	public final static Indexer.AbstractString<Person> firstName = new Indexer.AbstractString<>()
+	public final static IndexerString<Person> firstName = new IndexerString.Abstract<>()
 	{
 		public String name()
 		{
@@ -34,13 +36,13 @@ public class PersonIndices
 		}
 		
 		@Override
-		public String indexEntity(final Person entity)
+		public String getString(final Person entity)
 		{
 			return entity.getFirstName();
 		}
 	};
 	
-	public final static Indexer.AbstractString<Person> lastName = new Indexer.AbstractString<>()
+	public final static IndexerString<Person> lastName = new IndexerString.Abstract<>()
 	{
 		public String name()
 		{
@@ -48,13 +50,13 @@ public class PersonIndices
 		}
 		
 		@Override
-		public String indexEntity(final Person entity)
+		public String getString(final Person entity)
 		{
 			return entity.getLastName();
 		}
 	};
 	
-	public final static Indexer.AbstractLocalDate<Person> dateOfBirth = new Indexer.AbstractLocalDate<>()
+	public final static IndexerLocalDate<Person> dateOfBirth = new IndexerLocalDate.Abstract<>()
 	{
 		public String name()
 		{
@@ -62,13 +64,13 @@ public class PersonIndices
 		}
 		
 		@Override
-		protected LocalDate getDate(final Person entity)
+		protected LocalDate getLocalDate(final Person entity)
 		{
 			return entity.getDateOfBirth();
 		}
 	};
 
-	public final static Indexer.AbstractString<Person> city = new Indexer.AbstractString<>()
+	public final static IndexerString<Person> city = new IndexerString.Abstract<>()
 	{
 		public String name()
 		{
@@ -76,13 +78,13 @@ public class PersonIndices
 		}
 		
 		@Override
-		public String indexEntity(final Person entity)
+		public String getString(final Person entity)
 		{
 			return entity.getAddress().getCity();
 		}
 	};
 
-	public final static Indexer.AbstractString<Person> country = new Indexer.AbstractString<>()
+	public final static IndexerString<Person> country = new IndexerString.Abstract<>()
 	{
 		public String name()
 		{
@@ -90,7 +92,7 @@ public class PersonIndices
 		}
 		
 		@Override
-		public String indexEntity(final Person entity)
+		public String getString(final Person entity)
 		{
 			return entity.getAddress().getCountry();
 		}
