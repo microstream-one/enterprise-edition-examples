@@ -1,21 +1,16 @@
 package one.microstream.gigamap.examples;
 
+import com.github.javafaker.Faker;
+import one.microstream.gigamap.GigaMap;
+import one.microstream.gigamap.GigaQuery;
+import org.eclipse.store.storage.embedded.types.EmbeddedStorage;
+import org.eclipse.store.storage.embedded.types.EmbeddedStorageManager;
+
 import java.nio.file.Paths;
 import java.time.Year;
 import java.util.List;
 
-import org.eclipse.store.storage.embedded.types.EmbeddedStorage;
-import org.eclipse.store.storage.embedded.types.EmbeddedStorageManager;
-
-import com.github.javafaker.Faker;
-
-import one.microstream.gigamap.GigaMap;
-import one.microstream.gigamap.GigaQuery;
-
 import static one.microstream.gigamap.examples.PersonIndices.*;
-import static one.microstream.gigamap.examples.PersonIndices.id;
-import static one.microstream.gigamap.examples.PersonIndices.interests;
-import static one.microstream.gigamap.examples.PersonIndices.lastName;
 
 
 public class BasicExample
