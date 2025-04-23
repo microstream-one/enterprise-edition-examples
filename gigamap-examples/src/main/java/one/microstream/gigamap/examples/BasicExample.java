@@ -12,6 +12,12 @@ import com.github.javafaker.Faker;
 import one.microstream.gigamap.GigaMap;
 import one.microstream.gigamap.GigaQuery;
 
+import static one.microstream.gigamap.examples.PersonIndices.*;
+import static one.microstream.gigamap.examples.PersonIndices.id;
+import static one.microstream.gigamap.examples.PersonIndices.interests;
+import static one.microstream.gigamap.examples.PersonIndices.lastName;
+
+
 public class BasicExample
 {
 	final static EmbeddedStorageManager storageManager = startStorage();
@@ -30,7 +36,7 @@ public class BasicExample
 		{
 			System.out.print("Creating random data ... ");
 			
-			storageManager.setRoot(gigaMap = RandomGenerator.createMap(10_000));
+			storageManager.setRoot(gigaMap = RandomGenerator.createMap(1_000_000));
 			storageManager.storeRoot();
 			
 			System.out.println("finished");
@@ -59,6 +65,8 @@ public class BasicExample
 		printSpacer();
 		queryExample4();
 		printSpacer();
+		queryExample5();
+		printSpacer();
 	}
 	
 	
@@ -66,7 +74,7 @@ public class BasicExample
 	{
 		query(
 			"Thomases",
-			gigaMap.query(PersonIndices.firstName.is("Thomas"))
+			gigaMap.query(firstName.is("Thomas"))
 		);
 	}
 	
@@ -75,7 +83,7 @@ public class BasicExample
 		final int birthYear = Year.now().getValue() - 25;
 		query(
 			"25 year olds",
-			gigaMap.query(PersonIndices.dateOfBirth.isYear(birthYear))
+			gigaMap.query(dateOfBirth.isYear(birthYear))
 		);
 	}
 	
@@ -83,7 +91,7 @@ public class BasicExample
 	{
 		query(
 			"Germans and Austrians",
-			gigaMap.query(PersonIndices.country.in("Germany", "Austria"))
+			gigaMap.query(country.in("Germany", "Austria"))
 		);
 	}
 	
@@ -91,13 +99,21 @@ public class BasicExample
 	{
 		query(
 			"%sch% in last name",
-			gigaMap.query(PersonIndices.lastName.contains("sch"))
+			gigaMap.query(lastName.contains("sch"))
+		);
+	}
+	
+	static void queryExample5()
+	{
+		query(
+			"sport as interest",
+			gigaMap.query(interests.is(Interest.SPORTS))
 		);
 	}
 	
 	static void updateExample()
 	{
-		final Person person = gigaMap.get(0);
+		final Person person = gigaMap.query(id.is(1L)).findFirst().orElseThrow();
 		System.out.println("Before: " + person);
 		
 		// updates person and indices
@@ -114,11 +130,9 @@ public class BasicExample
 	)
 	{
 		System.out.println(title);
-		final long start = System.currentTimeMillis();
-		
+		final long start = System.nanoTime();
 		final List<Person> result = query.toList(10);
-		System.out.println((System.currentTimeMillis() - start) + " ms");
-		
+		System.out.println((System.nanoTime() - start) / 1_000_000.0 + " ms");
 		result.forEach(System.out::println);
 		System.out.println("...");
 	}

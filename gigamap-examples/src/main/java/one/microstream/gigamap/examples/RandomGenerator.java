@@ -11,23 +11,24 @@ public class RandomGenerator
 {
 	public static GigaMap<Person> createMap(final int size)
 	{
-		final GigaMap<Person> gigaMap = GigaMap.<Person>Builder()
+		final GigaMap<Person> map = GigaMap.<Person>Builder()
 			.withBitmapIdentityIndex(PersonIndices.id)
 			.withBitmapIndex(PersonIndices.firstName)
 			.withBitmapIndex(PersonIndices.lastName)
 			.withBitmapIndex(PersonIndices.dateOfBirth)
 			.withBitmapIndex(PersonIndices.city)
 			.withBitmapIndex(PersonIndices.country)
+			.withBitmapIndex(PersonIndices.interests)
 			.build();
 		
 		final List<Person> data  = new ArrayList<>(size);
 		final Faker        faker = new Faker();
-		for(int i = 0; i < size; i++)
+		for(int i = 1; i <= size; i++)
 		{
-			data.add(new Person(faker));
+			data.add(new Person(i, faker));
 		}
-		gigaMap.addAll(data);
+		map.addAll(data);
 		
-		return gigaMap;
+		return map;
 	}
 }

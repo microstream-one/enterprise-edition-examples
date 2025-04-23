@@ -1,11 +1,9 @@
 package one.microstream.gigamap.examples;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
-import one.microstream.gigamap.IndexerLocalDate;
-import one.microstream.gigamap.IndexerString;
-import one.microstream.gigamap.IndexerUUID;
+import one.microstream.gigamap.*;
+
 
 /**
  * Static collection of indices for the {@link Person} entity.
@@ -14,7 +12,7 @@ import one.microstream.gigamap.IndexerUUID;
  */
 public class PersonIndices
 {
-	public final static IndexerUUID<Person> id = new IndexerUUID.Abstract<>()
+	public final static BinaryIndexer<Person> id = new BinaryIndexer.Abstract<>()
 	{
 		public String name()
 		{
@@ -22,7 +20,7 @@ public class PersonIndices
 		}
 		
 		@Override
-		protected UUID getUUID(final Person entity)
+		protected long indexEntity_long(final Person entity)
 		{
 			return entity.getId();
 		}
@@ -36,7 +34,7 @@ public class PersonIndices
 		}
 		
 		@Override
-		public String getString(final Person entity)
+		protected String getString(final Person entity)
 		{
 			return entity.getFirstName();
 		}
@@ -50,7 +48,7 @@ public class PersonIndices
 		}
 		
 		@Override
-		public String getString(final Person entity)
+		protected String getString(final Person entity)
 		{
 			return entity.getLastName();
 		}
@@ -78,7 +76,7 @@ public class PersonIndices
 		}
 		
 		@Override
-		public String getString(final Person entity)
+		protected String getString(final Person entity)
 		{
 			return entity.getAddress().getCity();
 		}
@@ -92,9 +90,24 @@ public class PersonIndices
 		}
 		
 		@Override
-		public String getString(final Person entity)
+		protected String getString(final Person entity)
 		{
 			return entity.getAddress().getCountry();
+		}
+	};
+	
+	public final static IndexerMultiValue<Person, Interest> interests = new IndexerMultiValue.Abstract<>()
+	{
+		@Override
+		public Class<Interest> keyType()
+		{
+			return Interest.class;
+		}
+
+		@Override
+		public Iterable<? extends Interest> indexEntityMultiValue(final Person entity)
+		{
+			return entity.getInterests();
 		}
 	};
 }

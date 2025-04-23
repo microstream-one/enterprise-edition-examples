@@ -2,38 +2,52 @@ package one.microstream.gigamap.examples;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.UUID;
+import java.util.List;
 
 import com.github.javafaker.Faker;
 
 public class Person
 {
-	private final UUID      id         = UUID.randomUUID();
-	private final String    firstName  ;
-	private       String    lastName   ;
-	private final LocalDate dateOfBirth;
-	private       Address   address    ;
+	private final long           id         ;
+	private final String         firstName  ;
+	private       String         lastName   ;
+	private final LocalDate      dateOfBirth;
+	private       Address        address    ;
+	private       List<Interest> interests  ;
 	
-	public Person(final Faker faker)
+	
+	public Person(final long id, final Faker faker)
 	{
 		this(
+			id,
 			faker.name().firstName(),
 			faker.name().lastName(),
 			LocalDate.ofInstant(faker.date().birthday().toInstant(), ZoneId.systemDefault()),
-			new Address(faker)
+			new Address(faker),
+			Interest.random(faker.random())
 		);
+		
 	}
 	
-	public Person(final String firstName, final String lastName, final LocalDate dateOfBirth, final Address address)
+	public Person(
+		final long           id,
+		final String         firstName,
+		final String         lastName,
+		final LocalDate      dateOfBirth,
+		final Address        address,
+		final List<Interest> interests
+	)
 	{
 		super();
+		this.id          = id;
 		this.firstName   = firstName;
 		this.lastName    = lastName;
 		this.dateOfBirth = dateOfBirth;
 		this.address     = address;
+		this.interests   = interests;
 	}
 	
-	public UUID getId()
+	public long getId()
 	{
 		return this.id;
 	}
@@ -67,12 +81,22 @@ public class Person
 	{
 		this.address = address;
 	}
+	
+	public List<Interest> getInterests()
+	{
+		return this.interests;
+	}
+	
+	public void setInterests(final List<Interest> interests)
+	{
+		this.interests = interests;
+	}
 
 	@Override
 	public String toString()
 	{
 		return "Person [id=" + this.id + ", firstName=" + this.firstName + ", lastName=" + this.lastName + ", dateOfBirth="
-			+ this.dateOfBirth + ", address=" + this.address + "]";
+			+ this.dateOfBirth + ", address=" + this.address + ", interests=" + this.interests + "]";
 	}
 
 }
