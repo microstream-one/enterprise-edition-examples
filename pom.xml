@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>one.microstream</groupId>
+	<artifactId>enterprise-edition-examples</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	
+	<name>MicroStream Enterprise Edition Examples</name>
+	<url>https://microstream.one</url>
+
+	<organization>
+		<name>MicroStream Software</name>
+		<url>https://microstream.one</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>MicroStream Software</name>
+			<url>https://microstream.one</url>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>MicroStream Enterprise Edition License</name>
+			<url>https://repo.microstream.one/repository/static/licenses/ms-ee-1.0/license.txt</url>
+		</license>
+	</licenses>
+
+	<modules>
+		<module>gigamap-examples</module>
+	</modules>
+	
+</project>
